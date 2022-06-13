@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    tools:context=".mainMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="50dp">
+
+        <TextView
+            android:id="@+id/namalaundry1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="namalaundry"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnproduk"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Produk"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnpesanan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Pesanan"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnlaporan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Laporan"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>
