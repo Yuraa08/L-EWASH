@@ -23,7 +23,7 @@ import retrofit2.Response;
 public class mainMenu extends AppCompatActivity {
 
     Button produk, pesanan, laporan;
-    TextView namalaundry;
+    TextView namalaundry, userldry;
     private String userlaundry, namaldr1;
 
     private List<LaundrylistsItem> ldrylist;
@@ -40,6 +40,9 @@ public class mainMenu extends AppCompatActivity {
         pesanan = findViewById(R.id.btnpesanan);
         laporan = findViewById(R.id.btnlaporan);
         namalaundry = findViewById(R.id.namalaundry1);
+        userldry = findViewById(R.id.userlaundry12);
+
+        userldry.setText(userlaundry);
 
 //        namalaundry.setText(userldr);
 
@@ -82,11 +85,11 @@ public class mainMenu extends AppCompatActivity {
         tdata.enqueue(new Callback<ResponseLaundryList>() {
             @Override
             public void onResponse(Call<ResponseLaundryList> call, Response<ResponseLaundryList> response) {
-                int id_laundry = response.body().getIdLaundry();
-                String msg = response.body().getMsg();
+                int idLaundry = response.body().getIdLaundry();
+                String msg =response.body().getMsg();
 
                 ldrylist = response.body().getLaundrylists();
-                LaundrylistsItem laundry_data = ldrylist.get(0);
+                LaundrylistsItem laundry_data =ldrylist.get(0);
 
                 namalaundry.setText(laundry_data.getNamalaundry());
 
@@ -94,8 +97,7 @@ public class mainMenu extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseLaundryList> call, Throwable t) {
-                Toast.makeText(mainMenu.this, "GAGAL KONEK" + t.getMessage(), Toast.LENGTH_LONG).show();
-                Log.e("Error.ResponseLdryList", t.toString());
+
             }
         });
     }
