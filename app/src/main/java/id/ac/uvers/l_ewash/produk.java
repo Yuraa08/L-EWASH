@@ -23,13 +23,24 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import id.ac.uvers.l_ewash.model.PricelistItem;
+import id.ac.uvers.l_ewash.model.ResponsePriceList;
+import id.ac.uvers.l_ewash.retrofit.ApiEndpoint;
+import id.ac.uvers.l_ewash.retrofit.ApiService;
+import retrofit2.Call;
+import retrofit2.Callback;
+
 public class produk extends AppCompatActivity {
 
     EditText bajuN, bajuE, bonekaN, bonekaE, bedcoverN, bedcoverE, selimutbN, selimutbE, selimutkN, selimutkE, gordenN, gordenE, setrikaN, setrikaE;
     TextView namalaundry1;
     private String namaldr;
-    Button upgradehrg;
+    Button inserthrg, updatehrg;
     private String namalaundry, baju_n, baju_e, boneka_n, boneka_e, bedcover_n, bedcover_e, selimutb_n, selimutb_e, selimutk_n, selimutk_e, gorden_n, gorden_e, setrika_n, setrika_e;
+
+    private List<PricelistItem> pllist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +65,14 @@ public class produk extends AppCompatActivity {
         gordenE = findViewById(R.id.gordenE);
         setrikaN = findViewById(R.id.setrikaN);
         setrikaE = findViewById(R.id.setrikaE);
-        upgradehrg = findViewById(R.id.btnupdatehrg);
+        inserthrg = findViewById(R.id.btninserthrg);
+        updatehrg = findViewById(R.id.btnupdatehrg);
 
         namalaundry1.setText(namaldr);
 
-        upgradehrg.setOnClickListener(new View.OnClickListener() {
+        getpricelist();
+
+        inserthrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 namalaundry = namalaundry1.getText().toString().trim();
@@ -132,6 +146,53 @@ public class produk extends AppCompatActivity {
                     });
                     rq.add(jar);
                 }
+            }
+        });
+
+        updatehrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    private void getpricelist() {
+        ApiEndpoint apidata = ApiService.getClient().create(ApiEndpoint.class);
+        Call<ResponsePriceList> tdata = apidata.pllist(namaldr);
+
+        tdata.enqueue(new Callback<ResponsePriceList>() {
+            @Override
+            public void onResponse(Call<ResponsePriceList> call, retrofit2.Response<ResponsePriceList> response) {
+                int id_laundry = response.body().getId();
+                String msg = response.body().getMsg();
+
+                pllist = response.body().getPricelist();
+                PricelistItem current_laundry = pllist.get(0);
+
+                bajuN.setText(current_laundry.getBajuN());
+                bajuE.setText(current_laundry.getBajuE());
+                bonekaN.setText(current_laundry.getBonekaN());
+                bonekaE.setText(current_laundry.getBonekaE());
+                bedcoverN.setText(current_laundry.getBedcoverN());
+                bedcoverE.setText(current_laundry.getBedcoverE());
+                selimutbN.setText(current_laundry.getSelimutbN());
+                selimutbE.setText(current_laundry.getSelimutbE());
+                selimutkN.setText(current_laundry.getSelimutkN());
+                selimutkE.setText(current_laundry.getSelimutkE());
+                gordenN.setText(current_laundry.getGordenN());
+                gordenE.setText(current_laundry.getGordenE());
+                setrikaN.setText(current_laundry.getSetrikaN());
+                setrikaE.setText(current_laundry.getSetrikaE());
+
+//                Log.i("terserah",current_laundry.getSetrikaN());
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePriceList> call, Throwable t) {
+
             }
         });
     }

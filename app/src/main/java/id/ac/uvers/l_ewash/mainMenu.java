@@ -53,9 +53,9 @@ public class mainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 namaldr1 =namalaundry.getText().toString().trim();
 
-//                Intent iii = new Intent(mainMenu.this, id.ac.uvers.l_ewash.produk.class);
-//                iii.putExtra("namalaundry",namaldr1);
-//                startActivity(iii);
+                Intent iii = new Intent(mainMenu.this, id.ac.uvers.l_ewash.produk.class);
+                iii.putExtra("namalaundry",namaldr1);
+                startActivity(iii);
             }
         });
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ResponseLaundryList {
 	private String msg;
-	private List<LaundrylistsItem> laundrylists;
+	private List<LaundrylistsItem> ldrylist;
 	private int idLaundry;
 
 	public void setMsg(String msg){
@@ -16,11 +16,11 @@ public class ResponseLaundryList {
 	}
 
 	public void setLaundrylists(List<LaundrylistsItem> laundrylists){
-		this.laundrylists = laundrylists;
+		this.ldrylist = laundrylists;
 	}
 
 	public List<LaundrylistsItem> getLaundrylists(){
-		return laundrylists;
+		return ldrylist;
 	}
 
 	public void setIdLaundry(int idLaundry){
